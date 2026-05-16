@@ -4,11 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
-  HeadContent,
-  Scripts,
 } from "@tanstack/react-router";
-
-import appCss from "../styles.css?url";
 
 function NotFoundComponent() {
   return (
@@ -68,47 +64,13 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "FreshPet Artistry · Salon premium de grooming în Iași" },
-      { name: "description", content: "Salon premium de grooming în Iași. Tuns, baie, îngrijire pentru câini și pisici. Produse hipoalergenice, groomer certificat, programare online." },
-      { property: "og:title", content: "FreshPet Artistry · Salon premium de grooming în Iași" },
-      { property: "og:description", content: "Salon premium de grooming în Iași. Tuns, baie, îngrijire pentru câini și pisici." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-    ],
-    links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
-    ],
-  }),
-  shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,
 });
 
-function RootShell({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  );
-}
-
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
-
   return (
     <QueryClientProvider client={queryClient}>
       <Outlet />

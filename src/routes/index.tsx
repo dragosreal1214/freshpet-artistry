@@ -15,12 +15,6 @@ import { Footer } from "@/components/sections/Footer";
 
 export const Route = createFileRoute("/")({
   component: Index,
-  head: () => ({
-    meta: [
-      { title: "FreshPet Salon · Grooming premium pentru animale în Iași" },
-      { name: "description", content: "Salon premium de grooming în Iași. Tuns, baie, îngrijire pentru câini și pisici. Produse hipoalergenice, groomer certificat, programare online." },
-    ],
-  }),
 });
 
 function Index() {
